@@ -12,6 +12,7 @@
 
 @interface ViewController ()
 @property (strong, nonatomic) CookieMonster *cookieMonster;
+@property (weak, nonatomic) IBOutlet UIButton *cookieButton;
 @end
 
 @implementation ViewController
@@ -20,6 +21,8 @@
   [super viewDidLoad];
   
   self.cookieMonster = [[CookieMonster alloc] init];
+  
+  self.cookieButton.layer.cornerRadius = 3.0F;
 }
 
 #pragma mark - Actions
