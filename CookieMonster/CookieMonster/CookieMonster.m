@@ -7,12 +7,14 @@
 //
 
 #import "CookieMonster.h"
+#import "Hostname.h"
 
 //Notifications
 NSString *const CookieMonsterDidGetCookieNotification = @"CookieMonsterDidGetCookieNotification";
 
 //Constants
 static NSString *const kCookieMonsterCodeKey = @"code";
+static NSString *const kCookieMonsterHtml = @"monster.html";
 
 @interface CookieMonster()
 @property (copy, nonatomic) CookieMonsterCompletion completion;
@@ -28,9 +30,11 @@ static NSString *const kCookieMonsterCodeKey = @"code";
   
   self.completion = completion;
   
-  NSURL *url = [NSURL URLWithString:@"http://localhost:8000/monster.html"];
+  NSString *host = [Hostname hostname];
+  NSString *urlString = [NSString stringWithFormat:@"%@/%@", host, kCookieMonsterHtml];
+  NSURL *url = [NSURL URLWithString:urlString];
   
-  [self observeCookieNotificaion];
+  [self observeCookieNotification];
   
   self.safari = [[SFSafariViewController alloc] initWithURL:url];
   self.safari.delegate = self;
@@ -40,7 +44,9 @@ static NSString *const kCookieMonsterCodeKey = @"code";
   self.safari.view.frame = CGRectZero;
   [viewController presentViewController:self.safari
                                animated:NO
-                             completion:^{}];
+                             completion:^{
+                             }];
+  
 }
 
 + (BOOL) handleOpenUrl:(NSURL*)url {
@@ -51,6 +57,17 @@ static NSString *const kCookieMonsterCodeKey = @"code";
                                                       object:url
                                                     userInfo:userInfo];
   return YES;
+}
+
+#pragma mark - SFSafariViewController
+
+- (void) safariViewController:(SFSafariViewController *)controller
+       didCompleteInitialLoad:(BOOL)didLoadSuccessfully {
+  
+  //Could not load page, remove safari view controller
+  if (!didLoadSuccessfully) {
+    [self dismissSafariWithCode:nil];
+  }
 }
 
 #pragma mark - Private
@@ -91,7 +108,7 @@ static NSString *const kCookieMonsterCodeKey = @"code";
   return code;
 }
 
-- (void) observeCookieNotificaion {
+- (void) observeCookieNotification {
   __weak NSNotificationCenter *noteCenter = [NSNotificationCenter defaultCenter];
   __weak typeof(self) weakSelf = self;
   __block __weak id<NSObject> observer = [noteCenter addObserverForName:CookieMonsterDidGetCookieNotification

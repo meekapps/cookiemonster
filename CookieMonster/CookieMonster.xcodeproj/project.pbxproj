@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41161F151D5B7B4F0031CA78 /* Hostname.m in Sources */ = {isa = PBXBuildFile; fileRef = 41161F141D5B7B4F0031CA78 /* Hostname.m */; };
 		41CCE8511D5A65F300C0DD49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CCE8501D5A65F300C0DD49 /* main.m */; };
 		41CCE8541D5A65F300C0DD49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CCE8531D5A65F300C0DD49 /* AppDelegate.m */; };
 		41CCE8571D5A65F300C0DD49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CCE8561D5A65F300C0DD49 /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41161F131D5B7B4F0031CA78 /* Hostname.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hostname.h; sourceTree = "<group>"; };
+		41161F141D5B7B4F0031CA78 /* Hostname.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hostname.m; sourceTree = "<group>"; };
 		41CCE84C1D5A65F300C0DD49 /* CookieMonster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookieMonster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CCE8501D5A65F300C0DD49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41CCE8521D5A65F300C0DD49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 			children = (
 				41CCE8521D5A65F300C0DD49 /* AppDelegate.h */,
 				41CCE8531D5A65F300C0DD49 /* AppDelegate.m */,
+				41161F131D5B7B4F0031CA78 /* Hostname.h */,
+				41161F141D5B7B4F0031CA78 /* Hostname.m */,
 				41CCE8661D5A661700C0DD49 /* CookieMonster.h */,
 				41CCE8671D5A661700C0DD49 /* CookieMonster.m */,
 				41CCE8551D5A65F300C0DD49 /* ViewController.h */,
@@ -94,6 +99,7 @@
 				41CCE8481D5A65F300C0DD49 /* Sources */,
 				41CCE8491D5A65F300C0DD49 /* Frameworks */,
 				41CCE84A1D5A65F300C0DD49 /* Resources */,
+				41161F121D5B7AB50031CA78 /* Hostname */,
 			);
 			buildRules = (
 			);
@@ -150,12 +156,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		41161F121D5B7AB50031CA78 /* Hostname */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Hostname;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "HOSTFILE=$BUILT_PRODUCTS_DIR/cookiemonster.app/host.txt\nif [ \"${PLATFORM_NAME}\" = \"iphonesimulator\" ]; then\necho -n $(hostname) > $HOSTFILE\nelse\necho -n $(ifconfig $(netstat -rn | grep default  | awk '{print $6}') | grep \"inet \" | awk '{print $2}' | head -n 1) > $HOSTFILE\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		41CCE8481D5A65F300C0DD49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				41CCE8681D5A661700C0DD49 /* CookieMonster.m in Sources */,
+				41161F151D5B7B4F0031CA78 /* Hostname.m in Sources */,
 				41CCE8571D5A65F300C0DD49 /* ViewController.m in Sources */,
 				41CCE8541D5A65F300C0DD49 /* AppDelegate.m in Sources */,
 				41CCE8511D5A65F300C0DD49 /* main.m in Sources */,
@@ -313,6 +337,7 @@
 				41CCE8651D5A65F300C0DD49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

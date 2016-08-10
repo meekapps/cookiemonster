@@ -26,10 +26,21 @@
                                     <action selector="tappedActionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ejl-pb-sj9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xi-e4-A1R">
+                                <rect key="frame" x="144" y="265" width="87" height="30"/>
+                                <state key="normal" title="Create Code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedCreateCodeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9VI-QP-2Rq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.55686277149999996" blue="0.66666668650000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="FyR-S4-9vS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2EF-Ku-AR9"/>
+                            <constraint firstItem="FyR-S4-9vS" firstAttribute="top" secondItem="0Xi-e4-A1R" secondAttribute="bottom" constant="24" id="X6r-tk-uPP"/>
+                            <constraint firstItem="0Xi-e4-A1R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XKU-Jx-6Kx"/>
                             <constraint firstItem="FyR-S4-9vS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pWy-xA-Twc"/>
                         </constraints>
                     </view>

@@ -8,6 +8,9 @@ var c = document.cookie;
 var m = c.match(/code=(\w+)/);
 var name;
 var urlScheme = "cookiemonster://";
+
+location.reload();
+
 if (m) {
   var code = m[1];
   document.writeln("Found cookie: " + code);

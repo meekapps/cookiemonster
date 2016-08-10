@@ -7,10 +7,10 @@
 //
 
 #import "CookieMonster.h"
+#import "Hostname.h"
 #import "ViewController.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (strong, nonatomic) CookieMonster *cookieMonster;
 @end
 
@@ -24,7 +24,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)tappedActionButton:(id)sender {  
+- (IBAction) tappedActionButton:(id)sender {
   
   __weak typeof(self) weakSelf = self;
   [self.cookieMonster fetchStoredCookiesWithViewController:self
@@ -33,7 +33,19 @@
                                                 }];
 }
 
+- (IBAction) tappedCreateCodeButton:(id)sender {
+  [self showCreateCode];
+}
+
 #pragma mark - Private
+
+- (void) showCreateCode {
+  
+  NSString *host = [Hostname hostname];
+  NSString *createCodeUrlString = [NSString stringWithFormat:@"%@/index.html", host];
+  NSURL *url = [NSURL URLWithString:createCodeUrlString];
+  [[UIApplication sharedApplication] openURL:url];
+}
 
 - (void) showSuccessWithCode:(NSString*)code {
   NSString *title = code ? @"Ate a cookie" : @"Error";
