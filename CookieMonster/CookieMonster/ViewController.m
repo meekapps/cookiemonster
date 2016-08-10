@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.cookieMonster = [[CookieMonster alloc] init];
 }
 
 #pragma mark - Actions
@@ -49,13 +51,6 @@
   [self presentViewController:alert
                      animated:YES
                    completion:^{}];
-}
-
-- (CookieMonster*) cookieMonster {
-  if (!_cookieMonster) {
-    _cookieMonster = [[CookieMonster alloc] init];
-  }
-  return _cookieMonster;
 }
 
 @end
